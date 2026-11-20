@@ -23,11 +23,11 @@ _lock = threading.Lock()
 
 def http() -> httpx.Client:
     return httpx.Client(base_url=API, timeout=30, follow_redirects=True,
-                        headers={"User-Agent": "Melodex-retriever-qobuz/0.1"})
+                        headers={"User-Agent": "Melodex-retriever-qobuz/2 (+https://github.com/Dextrd/melodex-retriever-qobuz)"})
 
 
 def download() -> httpx.Client:
-    return httpx.Client(timeout=60, follow_redirects=True, headers={"User-Agent": "Melodex-retriever-qobuz/0.1"})
+    return httpx.Client(timeout=60, follow_redirects=True, headers={"User-Agent": "Melodex-retriever-qobuz/2 (+https://github.com/Dextrd/melodex-retriever-qobuz)"})
 
 
 def _password(value: str) -> str:

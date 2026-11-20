@@ -7,8 +7,8 @@ This is how tools like streamrip work, and it's against Qobuz's terms of use, so
 being closed. It needs a subscription that streams FLAC (Studio, or Sublime); with one that doesn't, Qobuz only gives
 30-second samples, and the plugin says so rather than fetch them.
 
-It runs beside [Melodex](https://github.com/dextrd/Melodex) as a container of its own, which Melodex reaches over the
-[retrieval plugin contract](https://github.com/dextrd/Melodex/blob/main/docs/contracts/README.md).
+It runs beside [Melodex](https://github.com/Dextrd/Melodex) as a container of its own, which Melodex reaches over the
+[retrieval plugin contract](https://github.com/Dextrd/Melodex/blob/main/docs/contracts/README.md).
 
 ## What it does
 
