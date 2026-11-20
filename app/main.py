@@ -13,7 +13,7 @@ from .contract import (CONTRACT_VERSION, FetchRequest, HealthRequest, Jobs, Sear
                        staging_directory)
 from .qobuz import Qobuz
 
-VERSION = "0.1.0"
+VERSION = "2.0.0"
 STAGING = env("STAGING_ROOT", "/staging")
 
 SETTINGS_SCHEMA: dict[str, Any] = {

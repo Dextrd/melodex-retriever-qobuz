@@ -7,7 +7,8 @@ This is how tools like streamrip work, and it's against Qobuz's terms of use, so
 being closed. It needs a subscription that streams FLAC (Studio, or Sublime); with one that doesn't, Qobuz only gives
 30-second samples, and the plugin says so rather than fetch them.
 
-It lives in the Melodex repository for now and will move to its own repository later.
+It runs beside [Melodex](https://github.com/dextrd/Melodex) as a container of its own, which Melodex reaches over the
+[retrieval plugin contract](https://github.com/dextrd/Melodex/blob/main/docs/contracts/README.md).
 
 ## What it does
 
@@ -31,19 +32,29 @@ It lives in the Melodex repository for now and will move to its own repository l
 
 The plugin's health check signs in and says what your subscription streams.
 
-## Running it
+## Adding it to Melodex
+
+Add this under `services:` in the compose file you run Melodex with, beside `core` and `beets-worker`, so it shares
+their `staging` volume:
 
 ```yaml
-retriever-qobuz:
-  build: plugins/retriever-qobuz
-  volumes:
-    - staging:/staging
+  retriever-qobuz:
+    image: ghcr.io/dextrd/melodex-retriever-qobuz:latest
+    container_name: melodex-retriever-qobuz
+    user: "${PUID:-1000}:${PGID:-1000}"
+    restart: unless-stopped
+    volumes:
+      - staging:/staging
 ```
+
+Then start it with `docker compose up -d`. `latest` follows each release; to choose when it changes, use a version
+such as `2` or `2.0.0` instead. On SELinux hosts with podman, give it the same `security_opt` as Melodex's own
+containers.
 
 Then add `http://retriever-qobuz:8080` under Settings → Plugins in Melodex (it's one of the templates under Add), and
 fill in its settings.
 
-`QOBUZ_API` points the plugin somewhere other than Qobuz's API; the Melodex sandbox uses it for a stand-in.
+`QOBUZ_API` points the plugin somewhere other than Qobuz's API; Melodex's sandbox uses it for a stand-in.
 
 ## Tests
 
